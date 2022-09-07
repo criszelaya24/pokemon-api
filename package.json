@@ -4,13 +4,14 @@
   "author": "Cristopher Palacios",
   "license": "MIT",
   "engines": {
-    "node": "14.19.3",
+    "node": "14.x",
     "yarn": "1.22.19"
   },
   "scripts": {
     "lint": "eslint --ext .ts -f table",
     "lint:fix": "yarn lint --fix",
-    "build": "tsc --project tsconfig.deployment.json && tsc-alias"
+    "build": "tsc --project tsconfig.deployment.json && tsc-alias",
+    "run:custom": "NODE_ENV=local ts-node -r tsconfig-paths/register src/infrastructure/index.ts"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.93",
@@ -26,9 +27,11 @@
     "ts-node": "^10.9.1",
     "tsc-alias": "^1.6.7",
     "tsconfig-paths": "^3.14.1",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.2",
+    "@types/mongoose": "^5.11.97"
   },
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^0.27.2",
+    "mongoose": "^5.13.8"
   }
 }

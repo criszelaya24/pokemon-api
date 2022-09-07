@@ -5,3 +5,4 @@ environments.json
 dist
 .serverless
 .env
+.vscode
