@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "dist",
+    "forceConsistentCasingInFileNames":true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": ["es2020"],
+    "target": "es2020",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "sourceMap": true,
+    "paths": {
+      "@entities/*": ["core/entities/*"],
+      "@ports/*": ["core/ports/*"],
+      "@services/*": ["core/services/*"],
+      "@infrastructure/*": ["infrastructure/*"],
+      "@controllers/*": ["controllers/*"],
+      "@utils/*": ["utils/*"],
+      "@decorators/*": ["decorators/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "types/*.d.ts",
+    "test" ],
+  "ts-node": {
+      "files": true
+  },
+}
