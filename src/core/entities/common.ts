@@ -1,3 +1,4 @@
+import Mongo from '@infrastructure/mongo';
 export class ApiError {
 
     key: string;
@@ -10,4 +11,8 @@ export class ApiError {
         this.info = info;
     }
 
+}
+
+export interface Ports {
+    Database: Mongo
 }
