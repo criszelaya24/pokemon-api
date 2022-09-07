@@ -7,5 +7,5 @@ export interface MongoConnection {
     connect(): void
     close():void
     getConnection():void
-    schemas: StaticModels
+    models: StaticModels
 }

@@ -20,7 +20,7 @@ const connection = (config:Config):MongoConnection => {
         close() {
             return mongoose.connection.close();
         },
-        schemas: create(),
+        models: create(),
     };
 };
 

@@ -15,7 +15,7 @@ export default class Mongo implements PokemonPorts {
 
     init = async() => {
         await this.mongoConnection.connect();
-        const { PokemonModel } = this.mongoConnection.schemas;
+        const { PokemonModel } = this.mongoConnection.models;
 
         this.PokemonModel = PokemonModel;
     };
