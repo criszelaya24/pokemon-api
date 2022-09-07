@@ -1,0 +1,40 @@
+service: pokemon-api
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  stackName: pokemon-api
+  deploymentMethod: direct
+  logRetentionInDays: 60
+  versionFunctions: true
+  memorySize: 512
+  timeout: 30
+  environment: ${file(./environments.json), null}
+  apiGateway:
+    restApiId: oix4kim8ti
+    restApiRootResourceId: y5ny1d
+  deploymentBucket:
+    name: fx-serverless-deployment-v2
+  iam:
+    role:
+      name: pokemon-api
+
+package:
+  patterns:
+    - '!**/**'
+    - dist/**
+    - node_modules/**
+    - environments.json
+    - package.json
+
+functions:
+  sync:
+    name: sync
+    runtime: nodejs14.x
+    handler: dist/cmd/lambda/sync.handler
+    events:
+      - http:
+          path: sync
+          method: get
+          cors: true
