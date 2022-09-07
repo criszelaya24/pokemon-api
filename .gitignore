@@ -4,3 +4,4 @@ yarn-error.log
 environments.json
 dist
 .serverless
+.env
