@@ -1,8 +1,9 @@
 import { Config } from '@entities/config';
+import { MongoConnection } from '@entities/database';
 import mongoose from 'mongoose';
 import create from './models';
 
-const connection = (config:Config) => {
+const connection = (config:Config):MongoConnection => {
     return {
         getConnection() {
             return mongoose.connection;

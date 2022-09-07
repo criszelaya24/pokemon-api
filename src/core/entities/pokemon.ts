@@ -18,7 +18,7 @@ export interface Pokemon extends Document {
     species:                  Localizable;
     sprites:                  Sprites;
     stats:                    Stat[];
-    types:                    Type[];
+    types:                    string[];
     weight:                   number;
 }
 
@@ -92,11 +92,6 @@ export interface Stat {
     stat:      Localizable;
 }
 
-export interface Type {
-    slot: number;
-    type: Localizable;
-}
-
 export interface PokemonStaticModel extends Model<Pokemon> {
-    findByType(type:string): Pokemon;
+    findByType(types:string[]): Pokemon[];
 }

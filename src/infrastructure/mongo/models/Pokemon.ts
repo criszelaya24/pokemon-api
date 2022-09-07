@@ -19,6 +19,17 @@ PokemonSchema.pre<IUpokemon>('save', async function(next) {
     next();
 });
 
+PokemonSchema.statics.findByType = async(types:string[]):Promise<IUpokemon[]> => {
+    const pokemon = await PokemonModel.find({
+        types: { $in: types },
+    });
+
+    if (!pokemon.length)
+        throw { key: 'validations', userMessage: 'notFound', extra: 'There are no pokemon to display' };
+
+    return pokemon;
+};
+
 const PokemonModel = mongoose.model<IUpokemon, PokemonStaticModel>('Pokemon', PokemonSchema);
 
 export default PokemonModel;
