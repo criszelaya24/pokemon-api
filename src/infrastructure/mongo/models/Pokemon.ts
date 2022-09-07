@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { Pokemon as IUpokemon, PokemonStaticModel } from '@entities/pokemon';
 const PokemonSchema = new mongoose.Schema<IUpokemon>({
     name: { type: String, required: true },
-    externalId: { type: Number, required: true },
+    _externalId: { type: Number, required: true },
     types: [ {
         type: String,
     } ],
@@ -22,12 +22,12 @@ PokemonSchema.pre<IUpokemon>('save', async function(next) {
 PokemonSchema.statics.findByType = async(types:string[]):Promise<IUpokemon[]> => {
     const pokemon = await PokemonModel.find({
         types: { $in: types },
-    });
+    }).lean();
 
     if (!pokemon.length)
         throw { key: 'validations', userMessage: 'notFound', extra: 'There are no pokemon to display' };
 
-    return pokemon;
+    return pokemon as IUpokemon[];
 };
 
 const PokemonModel = mongoose.model<IUpokemon, PokemonStaticModel>('Pokemon', PokemonSchema);

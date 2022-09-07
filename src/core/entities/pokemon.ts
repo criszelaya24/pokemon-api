@@ -8,7 +8,7 @@ export interface Pokemon extends Document {
     game_indices:             GameIndex[];
     height:                   number;
     held_items:               any[];
-    id:                       number;
+    _externalId:              number;
     is_default:               boolean;
     location_area_encounters: string;
     moves:                    Move[];
