@@ -41,3 +41,12 @@ functions:
           path: sync
           method: get
           cors: true
+  pokemon-list:
+    name: pokemon-list
+    runtime: nodejs14.x
+    handler: dist/cmd/lambda/listPokemon.handler
+    events:
+      - http:
+          path: pokemon
+          method: get
+          cors: true

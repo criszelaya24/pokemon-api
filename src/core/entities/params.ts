@@ -5,3 +5,7 @@ export interface SyncServiceParams {
     limit?:number
     Ports: Ports
 }
+
+export interface PokemonServiceParams extends Pagination {
+    Ports: Ports
+}

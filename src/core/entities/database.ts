@@ -1,5 +1,4 @@
 import { PokemonStaticModel } from './pokemon';
-
 export interface StaticModels {
     PokemonModel: PokemonStaticModel
 }

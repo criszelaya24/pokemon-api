@@ -2,7 +2,7 @@ import { Config } from '@entities/config';
 import { MongoConnection } from '@entities/database';
 import { Pokemon, PokemonStaticModel } from '@entities/pokemon';
 import connection from './connection';
-import { Database } from '../../core/ports/database';
+import { Database, PokemonPaginated } from '../../core/ports/database';
 export default class Mongo implements Database {
 
     private config:Config
@@ -20,14 +20,24 @@ export default class Mongo implements Database {
         this.PokemonModel = PokemonModel;
     };
 
-    findBy = async(findBy):Promise<Pokemon[]> => {
+    findBy = async(findBy, { page = 1, itemsPerPage = 10 }:Pagination):Promise<PokemonPaginated> => {
         let query = {};
 
         if (findBy.types) query = { ...query, types: { $in: findBy.types } };
 
-        return this.PokemonModel.find({
+        const pokemonDocuments = await this.PokemonModel.find({
             ...query,
-        });
+        }).limit(itemsPerPage)
+            .skip((page - 1) * itemsPerPage);
+
+        const pokemonDocumentCounts = await this.PokemonModel.countDocuments({ ...query }).lean();
+
+        return {
+            items: pokemonDocuments,
+            total: Number(pokemonDocumentCounts / itemsPerPage),
+            page,
+            itemsPerPage: pokemonDocumentCounts,
+        };
     }
 
     createUpdatePokemon = async(pokemon: Omit<Pokemon, '_id'>):Promise<Pokemon> => {
