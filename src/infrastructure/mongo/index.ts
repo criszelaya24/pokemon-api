@@ -21,10 +21,10 @@ export default class Mongo implements PokemonPorts, Database {
         this.PokemonModel = PokemonModel;
     };
 
-    findBy = async({ types, ...rest }):Promise<Pokemon[]> => {
-        let query = { ...rest };
+    findBy = async(findBy):Promise<Pokemon[]> => {
+        let query = {};
 
-        if (types) query = { ...query, types: { $in: types } };
+        if (findBy.types) query = { ...query, types: { $in: findBy.types } };
 
         return this.PokemonModel.find({
             ...query,
