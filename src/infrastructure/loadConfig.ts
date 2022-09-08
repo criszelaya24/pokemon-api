@@ -19,6 +19,7 @@ const loadConfig = async ():Promise<Config> => {
     return getSanitizedConfig({
         NODE_ENV: `${process.env.NODE_ENV}`,
         databaseUrl: `${process.env.DB_URI}`,
+        pokeApiBaseUrl: `${process.env.POKE_API_BASE_URL}`,
     });
 };
 

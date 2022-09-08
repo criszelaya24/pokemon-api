@@ -1,4 +1,5 @@
 import Mongo from '@infrastructure/mongo';
+import PokeApi from '@infrastructure/pokeApi';
 export class ApiError {
 
     key: string;
@@ -15,4 +16,5 @@ export class ApiError {
 
 export interface Ports {
     Database: Mongo
+    PokemonApi: PokeApi
 }

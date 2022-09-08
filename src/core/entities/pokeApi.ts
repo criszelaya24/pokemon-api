@@ -13,3 +13,11 @@ export interface Type {
     slot: number;
     type: Localizable;
 }
+
+export interface PokemonsApi {
+    count:    number;
+    next:     string;
+    previous: null;
+    results:  Localizable[];
+}
+
