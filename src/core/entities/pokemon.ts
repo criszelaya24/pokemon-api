@@ -2,6 +2,7 @@ import { Document } from 'mongoose';
 import { Model } from 'mongoose';
 
 export interface Pokemon extends Document {
+    _id:                      string
     abilities:                Ability[];
     base_experience:          number;
     forms:                    Localizable[];
