@@ -14,16 +14,26 @@ const responsesCode:ResponseCode = {
                 },
             },
         },
+        validations: {
+            code: 422,
+            userMessages: {
+                validations: {
+                    code: 4221,
+                    userMessage: {
+                        en: 'Validation Errors',
+                        es: 'Errores de validación',
+                    },
+                },
+            }
+        },
         serverError: {
             code: 500,
             userMessages: {
                 serverError: {
                     code: 5001,
                     userMessage: {
-                        original: 'Try again later',
+                        en: 'Try again later',
                         es: 'Intente de nuevo más tarde',
-                        pt: 'Tente novamente mais tarde',
-                        ja: 'あとでもう一度試してみてください',
                     },
                     description: 'Unexpected server error',
                 },
