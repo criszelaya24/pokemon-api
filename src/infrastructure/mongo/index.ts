@@ -21,8 +21,14 @@ export default class Mongo implements PokemonPorts, Database {
         this.PokemonModel = PokemonModel;
     };
 
-    findByType = async(types:string[]):Promise<Pokemon[]> => {
-        return this.PokemonModel.findByType(types);
+    findBy = async({ types, ...rest }):Promise<Pokemon[]> => {
+        let query = { ...rest };
+
+        if (types) query = { ...query, types: { $in: types } };
+
+        return this.PokemonModel.find({
+            ...query,
+        });
     }
 
     createUpdatePokemon = async(pokemon: Omit<Pokemon, '_id'>):Promise<Pokemon> => {
