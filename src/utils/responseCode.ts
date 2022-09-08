@@ -24,7 +24,7 @@ const responsesCode:ResponseCode = {
                         es: 'Errores de validación',
                     },
                 },
-            }
+            },
         },
         serverError: {
             code: 500,
