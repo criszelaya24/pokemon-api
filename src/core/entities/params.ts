@@ -9,3 +9,8 @@ export interface SyncServiceParams {
 export interface PokemonServiceParams extends Pagination {
     Ports: Ports
 }
+
+export interface GetPokemonParam {
+    _id?:string,
+    name?:string
+}

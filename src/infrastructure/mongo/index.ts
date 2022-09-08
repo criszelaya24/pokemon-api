@@ -21,7 +21,13 @@ export default class Mongo implements Database {
     };
 
     findBy = async(findBy, { page = 1, itemsPerPage = 10 }:Pagination):Promise<PokemonPaginated> => {
-        let query = {};
+        let query = Object.keys(findBy).reduce((acc, key) => {
+            if (findBy[key]) {
+                acc[key] = findBy[key];
+            }
+
+            return acc;
+        }, {});
 
         if (findBy.types) query = { ...query, types: { $in: findBy.types } };
 

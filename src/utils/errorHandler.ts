@@ -2,7 +2,8 @@ import { ErrorResponse } from '@entities/common';
 import responsesCode from '@utils/responseCode';
 
 const errorHandler = (error: any): ErrorResponse => {
-    const { code, userMessage, description } = responsesCode
+    const { code } = responsesCode.error[error.key ?? 'serverError'];
+    const { userMessage, description } = responsesCode
         .error[error.key ?? 'serverError'].userMessages[error.userMessage ?? 'serverError'];
 
     return {

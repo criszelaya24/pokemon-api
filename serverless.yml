@@ -50,3 +50,12 @@ functions:
           path: pokemon
           method: get
           cors: true
+  pokemon-detail:
+    name: pokemon-detail
+    runtime: nodejs14.x
+    handler: dist/cmd/lambda/getPokemon.handler
+    events:
+      - http:
+          path: pokemon/{_id}
+          method: get
+          cors: true
