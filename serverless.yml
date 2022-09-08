@@ -2,6 +2,9 @@ service: pokemon-api
 
 frameworkVersion: '3'
 
+plugins:
+  - serverless-offline
+
 provider:
   name: aws
   stackName: pokemon-api

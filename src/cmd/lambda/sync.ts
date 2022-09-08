@@ -7,6 +7,7 @@ import errorHandler from '@utils/errorHandler';
 
 export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyResult> => {
     try {
+        console.log(JSON.stringify(event, null, 2));
         const Ports = await initPorts();
         const params:Omit<SyncServiceParams, 'Ports'> = event.queryStringParameters ?? {};
 

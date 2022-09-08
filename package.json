@@ -11,7 +11,8 @@
     "lint": "eslint --ext .ts -f table",
     "lint:fix": "yarn lint --fix",
     "build": "tsc --project tsconfig.deployment.json && tsc-alias",
-    "run:custom": "NODE_ENV=local ts-node -r tsconfig-paths/register src/infrastructure/index.ts"
+    "deploy": "sls deploy",
+    "start:dev": "sls offline"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.93",
@@ -23,6 +24,7 @@
     "eslint-config-lint": "git+https://github.com/criszelaya24/eslint-config",
     "jest": "^27.4.7",
     "serverless": "^3.22.0",
+    "serverless-offline": "^10.0.0",
     "ts-jest": "^27.1.3",
     "ts-node": "^10.9.1",
     "tsc-alias": "^1.6.7",
