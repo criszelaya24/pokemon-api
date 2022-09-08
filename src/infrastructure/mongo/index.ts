@@ -1,10 +1,9 @@
 import { Config } from '@entities/config';
 import { MongoConnection } from '@entities/database';
 import { Pokemon, PokemonStaticModel } from '@entities/pokemon';
-import { PokemonPorts } from '@ports/database';
 import connection from './connection';
 import { Database } from '../../core/ports/database';
-export default class Mongo implements PokemonPorts, Database {
+export default class Mongo implements Database {
 
     private config:Config
     private mongoConnection:MongoConnection;
@@ -35,7 +34,7 @@ export default class Mongo implements PokemonPorts, Database {
         return this.PokemonModel
             .findOneAndUpdate({ _externalId: pokemon._externalId }, {
                 ...pokemon,
-            }, { new: true, upsert: true }).lean();
+            }, { new: true, upsert: true, strict: false }).lean();
     }
 
 }

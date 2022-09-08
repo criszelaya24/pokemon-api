@@ -1,7 +1,7 @@
 import { Pokemon } from './pokemon';
 export interface PokemonApi extends Omit<Pokemon, 'types'> {
     types:      Type[];
-    id:         Number
+    id:         number
 }
 
 export interface Localizable {

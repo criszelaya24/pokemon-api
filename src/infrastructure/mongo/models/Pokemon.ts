@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { Pokemon as IUpokemon, PokemonStaticModel } from '@entities/pokemon';
 const PokemonSchema = new mongoose.Schema<IUpokemon>({
     name: { type: String, required: true },
-    _externalId: { type: Number, required: true },
+    _externalId: { type: Number, required: true, unique: true },
     types: [ {
         type: String,
     } ],

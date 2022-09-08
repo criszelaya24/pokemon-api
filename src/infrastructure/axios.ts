@@ -1,3 +1,4 @@
+import { ApiError } from '@entities/common';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 declare module 'axios' {
@@ -26,7 +27,7 @@ export default class Axios {
 
     private _handleResponse = ({ data }: AxiosResponse) => data;
 
-    protected _handleError = (error: any) => Promise.reject(error);
+    protected _handleError = (error: any) => Promise.reject(new ApiError('notFound', 'notFound', error));
 
     protected async get<T>(url: string, config?: any): Promise<T> {
         const response = await this.instance.get(url, { ...config });
