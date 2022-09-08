@@ -34,9 +34,9 @@ export default class Mongo implements Database {
 
         return {
             items: pokemonDocuments,
-            total: Number(pokemonDocumentCounts / itemsPerPage),
+            total: Math.round(pokemonDocumentCounts / itemsPerPage),
             page,
-            itemsPerPage: pokemonDocumentCounts,
+            itemsPerPage: pokemonDocuments.length,
         };
     }
 
