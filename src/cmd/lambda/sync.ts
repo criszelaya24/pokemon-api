@@ -3,6 +3,7 @@ import response from '@utils/response';
 import { SyncServiceParams } from '@entities/params';
 import initPorts from '@infrastructure/index';
 import SyncService from '@services/sync';
+import errorHandler from '@utils/errorHandler';
 
 export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyResult> => {
     try {
@@ -15,6 +16,8 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
 
         return response({ statusCode: 200, body: result });
     } catch (error) {
-        return response({ statusCode: 500, body: error });
+        const { code, response: body } = errorHandler(error);
+
+        return response({ statusCode: code, body });
     }
 };
