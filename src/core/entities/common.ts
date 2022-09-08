@@ -27,6 +27,7 @@ export interface ResponseCode {
                 [key:string]: {
                     code : number
                     userMessage: { [key:string]: string }
+                    description?: string,
                 }
             }
         }

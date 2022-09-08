@@ -14,6 +14,21 @@ const responsesCode:ResponseCode = {
                 },
             },
         },
+        serverError: {
+            code: 500,
+            userMessages: {
+                serverError: {
+                    code: 5001,
+                    userMessage: {
+                        original: 'Try again later',
+                        es: 'Intente de nuevo más tarde',
+                        pt: 'Tente novamente mais tarde',
+                        ja: 'あとでもう一度試してみてください',
+                    },
+                    description: 'Unexpected server error',
+                },
+            },
+        },
     },
 };
 
