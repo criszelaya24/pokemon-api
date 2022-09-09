@@ -2,7 +2,7 @@ import { ApiError, Ports } from '@entities/common';
 import { PokemonActions } from '@ports/actions';
 import { PokemonServiceParams } from '@entities/params';
 import { Pokemon } from '@entities/pokemon';
-import { GetPokemonParam } from '../entities/params';
+import { GetPokemonParam, PathParams } from '../entities/params';
 
 export default class PokemonService implements PokemonActions {
 
@@ -15,8 +15,9 @@ export default class PokemonService implements PokemonActions {
         this.Ports = Ports;
     }
 
-    listPokemon = async() => {
-        return this.Ports.Database.findBy({}, { page: Number(this.page), itemsPerPage: Number(this.itemsPerPage) });
+    listPokemon = async(filter:PathParams = {}) => {
+        return this.Ports.Database.findBy({ ...filter },
+            { page: Number(this.page), itemsPerPage: Number(this.itemsPerPage) });
     }
 
     getPokemon = async({ value }:GetPokemonParam):Promise<Pokemon> => {

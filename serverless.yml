@@ -59,3 +59,12 @@ functions:
           path: pokemon/{attribute}
           method: get
           cors: true
+  pokemon-type:
+    name: pokemon-list
+    runtime: nodejs14.x
+    handler: dist/cmd/lambda/listPokemon.handler
+    events:
+      - http:
+          path: pokemon/type/{types}
+          method: get
+          cors: true

@@ -20,7 +20,7 @@ export default class Mongo implements Database {
         this.PokemonModel = PokemonModel;
     };
 
-    findBy = async(findBy: { [key:string]: any },
+    findBy = async(findBy: { [key:string]: string },
         { page = 1, itemsPerPage = 10 }:Pagination):Promise<PokemonPaginated> => {
         let query = Object.keys(findBy).reduce((acc, key) => {
             if (findBy[key]) {
@@ -30,7 +30,7 @@ export default class Mongo implements Database {
             return acc;
         }, {});
 
-        if (findBy.types) query = { ...query, types: { $in: findBy.types } };
+        if (findBy.types) query = { ...query, types: { $in: [ findBy.types ] } };
 
         const pokemonDocuments = await this.PokemonModel.find({
             ...query,

@@ -13,3 +13,7 @@ export interface PokemonServiceParams extends Pagination {
 export interface GetPokemonParam {
     value:string
 }
+
+export interface PathParams {
+    [key:string]: string
+}

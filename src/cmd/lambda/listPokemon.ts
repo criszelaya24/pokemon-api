@@ -1,7 +1,7 @@
 import { APIGatewayEvent, APIGatewayProxyResult } from 'aws-lambda';
 import response from '@utils/response';
 import PokemonService from '@services/pokemon';
-import { PokemonServiceParams } from '@entities/params';
+import { PathParams, PokemonServiceParams } from '@entities/params';
 import initPorts from '@infrastructure/index';
 import errorHandler from '@utils/errorHandler';
 
@@ -10,8 +10,9 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
         console.log(JSON.stringify(event, null, 2));
         const Ports = await initPorts();
         const params:Omit<PokemonServiceParams, 'Ports'> = event.queryStringParameters ?? {};
+        const filter = event.pathParameters as PathParams ?? {} ;
         const pokemonService = new PokemonService({ ...params, Ports });
-        const result = await pokemonService.listPokemon();
+        const result = await pokemonService.listPokemon(filter);
 
         return response({ statusCode: 200, body: result });
     } catch (error) {
