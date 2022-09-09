@@ -60,7 +60,7 @@ functions:
           method: get
           cors: true
   pokemon-type:
-    name: pokemon-list
+    name: pokemon-type
     runtime: nodejs14.x
     handler: dist/cmd/lambda/listPokemon.handler
     events:
