@@ -33,7 +33,7 @@ It will be displayed a details from endpoints available to test it locally as th
 # Postman Collection
 This URL you need to import it and will have a production requests.
 
-    https://www.getpostman.com/collections/6af3c72c3f25f10aa3c9
+    https://www.getpostman.com/collections/2cc586551c1b20978224
 
 Live URL: ```https://kjx29ldsj1.execute-api.us-east-1.amazonaws.com/dev/api```
 
