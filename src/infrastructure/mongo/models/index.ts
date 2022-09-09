@@ -1,4 +1,4 @@
-import { StaticModels } from '@entities/database';
+import { StaticModels } from '@entities/mongo';
 import PokemonModel from './Pokemon';
 
 const create = ():StaticModels => ({

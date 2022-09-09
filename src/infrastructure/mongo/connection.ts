@@ -1,5 +1,5 @@
 import { Config } from '@entities/config';
-import { MongoConnection } from '@entities/database';
+import { MongoConnection } from '@entities/mongo';
 import mongoose from 'mongoose';
 import create from './models';
 

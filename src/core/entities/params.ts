@@ -11,6 +11,5 @@ export interface PokemonServiceParams extends Pagination {
 }
 
 export interface GetPokemonParam {
-    _id?:string,
-    name?:string
+    value:string
 }

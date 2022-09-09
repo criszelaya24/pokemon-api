@@ -19,11 +19,12 @@ export default class PokemonService implements PokemonActions {
         return this.Ports.Database.findBy({}, { page: Number(this.page), itemsPerPage: Number(this.itemsPerPage) });
     }
 
-    getPokemon = async({ _id, name }:GetPokemonParam):Promise<Pokemon> => {
+    getPokemon = async({ value }:GetPokemonParam):Promise<Pokemon> => {
+        const key = this.Ports.Database.validateId(value) ? '_id' : 'name';
         const result = await this.Ports.Database
-            .findBy({ _id, name }, {});
+            .findBy({ [key]: value }, {});
 
-        if (result.items.length === 0) throw new ApiError('notFound', 'notFound', `Pokemon with ${_id} not found`);
+        if (result.items.length === 0) throw new ApiError('notFound', 'notFound', `Pokemon with ${value} not found`);
 
         return result.items[0];
     }

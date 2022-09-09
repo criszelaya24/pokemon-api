@@ -1,5 +1,5 @@
 import { Config } from '@entities/config';
-import { MongoConnection } from '@entities/database';
+import { MongoConnection } from '@entities/mongo';
 import { Pokemon, PokemonStaticModel } from '@entities/pokemon';
 import connection from './connection';
 import { Database, PokemonPaginated } from '../../core/ports/database';
@@ -20,7 +20,8 @@ export default class Mongo implements Database {
         this.PokemonModel = PokemonModel;
     };
 
-    findBy = async(findBy, { page = 1, itemsPerPage = 10 }:Pagination):Promise<PokemonPaginated> => {
+    findBy = async(findBy: { [key:string]: any },
+        { page = 1, itemsPerPage = 10 }:Pagination):Promise<PokemonPaginated> => {
         let query = Object.keys(findBy).reduce((acc, key) => {
             if (findBy[key]) {
                 acc[key] = findBy[key];
@@ -51,6 +52,10 @@ export default class Mongo implements Database {
             .findOneAndUpdate({ _externalId: pokemon._externalId }, {
                 ...pokemon,
             }, { new: true, upsert: true, strict: false }).lean();
+    }
+
+    validateId = (value:string):boolean => {
+        return !!value.match(/^[0-9a-fA-F]{24}$/);
     }
 
 }
