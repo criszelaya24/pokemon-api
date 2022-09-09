@@ -1,4 +1,4 @@
-import { GetPokemonParam, PathParams } from '@entities/params';
+import { Body, GetPokemonParam, PathParams } from '@entities/params';
 import { Pokemon } from '@entities/pokemon';
 import { PokemonPaginated } from './database';
 export interface SyncDatabaseApi {
@@ -8,4 +8,5 @@ export interface SyncDatabaseApi {
 export interface PokemonActions {
     listPokemon(params: PathParams):Promise<PokemonPaginated>
     getPokemon(params:GetPokemonParam):Promise<Pokemon>
+    updatePokemon(body:Body, params:GetPokemonParam):Promise<boolean>
 }

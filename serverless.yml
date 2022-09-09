@@ -15,8 +15,8 @@ provider:
   timeout: 30
   environment: ${file(./environments.json), null}
   apiGateway:
-    restApiId: oix4kim8ti
-    restApiRootResourceId: y5ny1d
+    restApiId: kjx29ldsj1
+    restApiRootResourceId: 6id29e
   deploymentBucket:
     name: fx-serverless-deployment-v2
   iam:
@@ -67,4 +67,13 @@ functions:
       - http:
           path: pokemon/type/{types}
           method: get
+          cors: true
+  pokemon-update:
+    name: pokemon-update
+    runtime: nodejs14.x
+    handler: dist/cmd/lambda/updatePokemon.handler
+    events:
+      - http:
+          path: pokemon/{attribute}
+          method: patch
           cors: true

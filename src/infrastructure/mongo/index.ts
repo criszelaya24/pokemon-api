@@ -35,7 +35,8 @@ export default class Mongo implements Database {
         const pokemonDocuments = await this.PokemonModel.find({
             ...query,
         }).limit(itemsPerPage)
-            .skip((page - 1) * itemsPerPage);
+            .skip((page - 1) * itemsPerPage)
+            .lean() as Pokemon[];
 
         const pokemonDocumentCounts = await this.PokemonModel.countDocuments({ ...query }).lean();
 

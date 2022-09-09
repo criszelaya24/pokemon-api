@@ -1,6 +1,6 @@
 import { ApiError, Ports } from '@entities/common';
 import { PokemonActions } from '@ports/actions';
-import { PokemonServiceParams } from '@entities/params';
+import { Body, PokemonServiceParams } from '@entities/params';
 import { Pokemon } from '@entities/pokemon';
 import { GetPokemonParam, PathParams } from '../entities/params';
 
@@ -28,6 +28,21 @@ export default class PokemonService implements PokemonActions {
         if (result.items.length === 0) throw new ApiError('notFound', 'notFound', `Pokemon with ${value} not found`);
 
         return result.items[0];
+    }
+
+    updatePokemon = async(body: Body, { value }:GetPokemonParam):Promise<boolean> => {
+        if (!this.Ports.Database.validateId(value))
+            throw new ApiError('validations', 'validations', `${value} is not a valid ID`);
+
+        const pokemon = await this.getPokemon({ value });
+        const pokemonToCreateUpdate = {
+            ...pokemon,
+            ...body,
+        } as Pokemon;
+
+        await this.Ports.Database.createUpdatePokemon(pokemonToCreateUpdate);
+
+        return true;
     }
 
 }

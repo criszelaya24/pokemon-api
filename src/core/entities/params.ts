@@ -17,3 +17,7 @@ export interface GetPokemonParam {
 export interface PathParams {
     [key:string]: string
 }
+
+export interface Body {
+    [key:string]: any
+}
